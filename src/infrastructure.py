@@ -19,13 +19,13 @@ class ApiFetcher:
             print(f"Failed to fetch data for {iso3}: {response.status_code}")
             return None
 
-    def fetch_geo_boundaries(self, iso3):
-        url_ = self.geo_api_url + f"?adm0={iso3}&admcode={iso3}"
+    def fetch_geo_boundaries(self, country_id):
+        url_ = self.geo_api_url + f"?adm0={country_id}&admcode={country_id}"
         response = requests.get(url_)
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"Failed to fetch geo boundaries for {iso3}: {response.status_code}")
+            print(f"Failed to fetch geo boundaries for {country_id}: {response.status_code}")
             return None
 
 
@@ -38,14 +38,6 @@ class DbRepository:
         self.port = port
         self.charset = charset
         self.autocommit = autocommit
-        self.connection = pymysql.connect(
-            host=host,
-            user=user,
-            password=password,
-            database=db_name,
-            port=port,
-            charset=charset,
-            autocommit=autocommit,
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        self.connection = pymysql.connect(host=host, user=user, password=password, database=db_name, port=port,
+                                          charset=charset, autocommit=autocommit, cursorclass=pymysql.cursors.DictCursor)
         self.engine = create_engine(f'mysql+pymysql://{user}:{password}@{host}:{port}/{db_name}?charset={charset}')

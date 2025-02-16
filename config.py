@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
-ENVIRONMENT = os.getenv("ENVIRONMENT", default="dev")
+ENVIRONMENT = os.getenv("ENVIRONMENT", default="prod")
 if ENVIRONMENT == "prod":
     load_dotenv(".env", verbose=True)
 else:
@@ -28,4 +28,8 @@ GMAIL_ADDRESS = os.getenv('GMAIL_ADDRESS')
 GMAIL_PASSWORD = os.getenv('GMAIL_PASSWORD')
 GMAIL_PROTOCOL = os.getenv('GMAIL_PROTOCOL')
 
+DAYS_TO_FETCH = int(os.getenv('DAYS_TO_FETCH'))
+
 FILE_RESOURCES_PATH = "file_resources"
+
+RUN_IN_PARALLEL = os.getenv('RUN_IN_PARALLEL', default="False").lower() in ['true', '1', 't', 'y', 'yes']

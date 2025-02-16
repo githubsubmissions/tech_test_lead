@@ -23,3 +23,11 @@ file resources
 as it grows, we can easily connect to an external storage 
 
 parallel processing
+
+terraform
+
+db use
+api
+tests
+orm use
+configurable fetch days
