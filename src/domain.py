@@ -19,7 +19,7 @@ class Pipeline:
         saved_df = self.save(computed_df, self.iso3)
 
         if saved_df:
-            print("send notification")
+            print(f"send {self.iso3} notification")
 
     def extract(self):
         food_security_data = container.api_fetcher.fetch_food_security_data(self.iso3, self.start_date, self.end_date)
